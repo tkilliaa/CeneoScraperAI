@@ -5,6 +5,7 @@ from app.forms import ProductForm
 from flask import request, render_template, redirect, url_for
 import requests
 import json
+import os
 
 app.config['SECRET_KEY'] = "NotSoSecretKey"
 
@@ -29,11 +30,12 @@ def extract():
 
 @app.route('/product/<productId>')
 def product(productId):
-    pass
+    return render_template('product.html.jinja', productId=productId)
 
 @app.route('/products')
 def products():
-    pass
+    productsList = [x.split(".")[0] for x in  os.listdir("app/opinions")]
+    return render_template('products.html.jinja', productsList=productsList)
 
 @app.route('/author')
 def author():
