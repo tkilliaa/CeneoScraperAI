@@ -13,11 +13,11 @@ class Product:
     url_pre = 'https://www.ceneo.pl'
     url_post = '#tab=reviews'
 
-    def __init__(self, productId=None, name=None, opinions=[], averageScore=None, opinionsCount=None, prosCount=None, consCount=None):
+    def __init__(self, productId=None, name=None, opinions=[], avarageScore=None, opinionsCount=None, prosCount=None, consCount=None):
         self.productId = productId
         self.name = name
         self.opinions = opinions.copy()
-        self.averageScore = averageScore
+        self.avarageScore = avarageScore
         self.opinionsCount = opinionsCount
         self.prosCount = prosCount
         self.consCount = consCount
@@ -48,7 +48,7 @@ class Product:
 
     def countProductStatistics(self):
         opinions = self.opinionsToDataFrame()
-        self.averageScore = float(opinions['stars'].mean())
+        self.avarageScore = float(opinions['stars'].mean())
         self.opinionsCount = len(self.opinions)
         self.prosCount = int(opinions['advantages'].count())
         self.consCount = int(opinions['disadvantages'].count())
@@ -81,18 +81,19 @@ class Product:
         return {
             "productId": self.productId,
             "name": self.name,
-            "averageScore": self.averageScore,
+            "avarageScore": self.avarageScore,
             "opinionsCount": self.opinionsCount,
             "prosCount": self.prosCount,
             "consCount": self.consCount
+
         }
 
     def opinionsToDictsList(self):
         return [opinion.toDict() for opinion in self.opinions]
 
     def opinionsToDataFrame(self):
-        # opinions = pd.DataFrame.from_records(
-            # [opinion.toDict() for opinion in self.opinions])
+        #opinions = pd.DataFrame.from_records(
+            #[opinion.toDict() for opinion in self.opinions])
         opinions = pd.json_normalize([opinion.toDict() for opinion in self.opinions])
         return opinions
 

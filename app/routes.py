@@ -39,12 +39,12 @@ def product(productId):
 @app.route('/products')
 def products():
     productsList = [x.split(".")[0] for x in  os.listdir("app/products")]
-    productsDictsList = []
+    productsDictList = []
     for product in productsList:
         with open("app/products/{}.json".format(product), "r", encoding="UTF-8") as jf:
-            productsDictsList.append(json.load(jf))
-    # products = pd.json_normalize(productsDictsList)
-    return render_template('products.html.jinja', products=productsDictsList)
+            productsDictList.append(json.load(jf))
+    products = pd.json_normalize(productsDictList)
+    return render_template('products.html.jinja', products=productsDictList)
 
 @app.route('/author')
 def author():

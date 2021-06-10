@@ -8,7 +8,7 @@
             <a href="{{url_for('product', productId=product['productId'])}}">{{product['name']}}</a>
             <p class="text-end">
                 <span class="badge rounded-pill bg-info text-dark">{{product['opinionsCount']}}</span>
-                <span class="badge rounded-pill bg-info text-dark">{{ "%.2f"|format(product['averageScore']|float)}}</span>
+                <span class="badge rounded-pill bg-info text-dark">{{ "%.2f"|format(product['avarageScore']|float)}}</span>
                 <span class="badge rounded-pill bg-success">{{product['prosCount']}}</span>
                 <span class="badge rounded-pill bg-danger">{{product['consCount']}}</span>
             </p>
