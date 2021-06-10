@@ -1,5 +1,58 @@
 {% extends "layout.html.jinja" %}
-
+style {
+    .pre: 
+}
 {% block middle %}
-    <h2> This is main file </h2>
+
+<div class="p-3 mb-2 bg-light text-dark">
+    <h4 style="color: rgb(45, 150, 255);">Purpose of the application</h4>
+    <hr class="rounded">
+    <p class="text-justify">The purpose of the application is to extract opinions about products from the Ceneo.pl website. For product, the code of which will be given as a parameter, its name and all available opinions about it should be extracted.</p>
+</div>
+<div class="p-3 mb-2 bg-light text-dark">
+    <h4 style="color: rgb(45, 150, 255);">Description of the application's operation</h4>
+    <hr class="rounded">
+    <p class="text-justify" style="white-space: pre-wrap">To extract reviews from a product, you need to:
+    
+    1. Go to ceneo.pl and find a product that interests you.
+    2. Into the site header, click on th "Extract" button.
+    3. In the field, enter the ID of your product and click on the button "Extract".
+    4. Then you will be taken to a page with reviews for the product you entered.</p>
+</div>
+<div class="p-3 mb-2 bg-light text-dark" >
+    <h4 style="color: rgb(45, 150, 255);">Libraries used</h4>
+    <hr class="rounded">
+    <p class="text-justify" style="white-space: pre-wrap">astroid==2.5.6
+autopep8==1.5.7
+beautifulsoup4==4.9.3
+certifi==2020.12.5
+chardet==4.0.0
+click==8.0.1
+colorama==0.4.4
+Flask==2.0.1
+Flask-WTF==0.15.1
+idna==2.10
+isort==5.8.0
+itsdangerous==2.0.1
+Jinja2==3.0.1
+lazy-object-proxy==1.6.0
+MarkupSafe==2.0.1
+mccabe==0.6.1
+pycodestyle==2.7.0
+pylint==2.8.2
+requests==2.25.1
+soupsieve==2.2.1
+toml==0.10.2
+urllib3==1.26.5
+Werkzeug==2.0.1
+wrapt==1.12.1
+WTForms==2.3.3</p>
+</div>
+<div class="p-3 mb-2 bg-light text-dark">
+    <h4 style="color: rgb(45, 150, 255);">Applied approaches</h4>
+    <hr class="rounded">
+    <p class="text-justify">The application was initially typically structured, but over time the code was refactored into procedural form, and eventually an object-oriented approach was applied. In the first stages of work, all parameters was written in the code in the form of literals, and then a simple text interface was used that allowed user to enter values, which later became the basis for the development of the web interface of the application.
+</p>
+</div>
+
 {% endblock middle %}

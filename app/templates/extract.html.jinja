@@ -1,6 +1,7 @@
 {% extends "layout.html.jinja" %}
 
 {% block middle %}
+<div style="text-align:center">
     <h2> Opinions extraction </h2>
     <h3>{{ test }}</h3>
     {% if form.productId.errors %}
@@ -16,4 +17,5 @@
         {{ form.productId.label }} {{ form.productId(size=20) }}
         {{ form.submit(class_="btn btn-info")}}
     </form>
+</div>
 {% endblock middle %}

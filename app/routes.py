@@ -4,6 +4,7 @@ from app.models.product import Product
 from app.forms import ProductForm
 from flask import request, render_template, redirect, url_for
 import requests
+import pandas as pd
 import json
 import os
 
@@ -20,8 +21,9 @@ def extract():
     if request.method == 'POST' and form.validate_on_submit():
         product = Product(request.form['productId'])
         respons = requests.get(product.opinionsPageUrl())
-        if respons.status_code == 200:
+        if (product.extractName()):
             product.extractProduct()
+            product.countProductStatistics()
             product.exportProduct()
             return redirect(url_for('product', productId=product.productId))
         else:
@@ -36,9 +38,14 @@ def product(productId):
 
 @app.route('/products')
 def products():
-    productsList = [x.split(".")[0] for x in  os.listdir("app/opinions")]
-    return render_template('products.html.jinja', productsList=productsList)
+    productsList = [x.split(".")[0] for x in  os.listdir("app/products")]
+    productsDictsList = []
+    for product in productsList:
+        with open("app/products/{}.json".format(product), "r", encoding="UTF-8") as jf:
+            productsDictsList.append(json.load(jf))
+    # products = pd.json_normalize(productsDictsList)
+    return render_template('products.html.jinja', products=productsDictsList)
 
 @app.route('/author')
 def author():
-    pass
+    return render_template('author.html.jinja')
